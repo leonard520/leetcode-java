@@ -11,8 +11,9 @@ public class Solution {
 		sum.put(0, 1);
 		for(int i = 0; i < nums.length; i++){
 			total += nums[i];
-			if(sum.get(k - total) != null){
-				result += sum.get(k - total);
+
+			if(sum.get(total - k) != null){
+				result += sum.get(total - k);
 			}
 			sum.put(total, sum.getOrDefault(total, 0) + 1);
 		}
