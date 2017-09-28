@@ -26,22 +26,22 @@ class Solution {
 		int row = board.length;
 		int col = board[0].length;
 		boolean flag = false;
-		if(i - 1 >= 0 && board[i - 1][j] == word.charAt(k + 1)){
+		if(i - 1 >= 0 && visit[i - 1][j] == false && board[i - 1][j] == word.charAt(k)){
 			visit[i - 1][j] = true;
 			flag |= search(i - 1, j , board, word, k + 1, visit);
 			visit[i - 1][j] = false;
 		}
-		if(i + 1 < row && board[i - 1][j] == word.charAt(k + 1)){
+		if(i + 1 < row && visit[i + 1][j] == false && board[i + 1][j] == word.charAt(k)){
 			visit[i + 1][j] = true;
 			flag |= search(i + 1, j , board, word, k + 1, visit);
 			visit[i + 1][j] = false;
 		}
-		if(j - 1 >= 0 && board[i][j - 1] == word.charAt(k + 1)){
+		if(j - 1 >= 0 && visit[i][j - 1] == false && board[i][j - 1] == word.charAt(k)){
 			visit[i][j - 1] = true;
 			flag |= search(i, j - 1, board, word, k + 1, visit);
 			visit[i][j - 1] = false;
 		}
-		if(j + 1 < col && board[i][j + 1] == word.charAt(k + 1)){
+		if(j + 1 < col && visit[i][j + 1] == false && board[i][j + 1] == word.charAt(k)){
 			visit[i][j + 1] = true;
 			flag |= search(i, j + 1 , board, word, k + 1, visit);
 			visit[i][j + 1] = false;
@@ -52,7 +52,6 @@ class Solution {
         boolean [][]visit = new boolean[board.length][board[0].length];
         for(int j = 0; j < board.length; j++){
         	for(int k = 0; k < board[0].length; k++){
-        		reset(visit, board.length, board[0].length);
         		if(board[j][k] == word.charAt(0)){
             		reset(visit, board.length, board[0].length);
         			visit[j][k] = true;
@@ -69,6 +68,8 @@ class Solution {
 		Solution s = new Solution();
 		//int [][]nums = {{1,1,1},{1,0,1},{1,1,1}};
 		//int [][]nums = {{1}};
-		int []nums = {1, 2, 3};
+		char[][] board = {{'a', 'a', 'a', 'a'}, {'a', 'a', 'a', 'a'}, {'a', 'a', 'a', 'a'}};
+		String word = "aaaaaaaaaa";
+		s.exist(board, word);
 	}
 }
